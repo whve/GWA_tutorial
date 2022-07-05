@@ -1,0 +1,14 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 加权评分
+
+PRS评分，可以构建一个加权的评分，即用beta系数做权重。另外，再构建一个非加权的评分，这时只考虑beta的正负号即可。
+
+webirth数据中的 SNP信息 即赋值 0,1,2， 加权的时候再乘以beta系数即可。
