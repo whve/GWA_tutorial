@@ -6,10 +6,10 @@ If you use PRSice in any published work, please cite:
 Choi SW, O'Reilly PF.
 PRSice-2: Polygenic Risk Score Software for Biobank-Scale Data.
 GigaScience 8, no. 7 (July 1, 2019)
-2022-07-01 17:27:02
+2022-07-06 17:37:06
 ./PRSice_linux \
     --bar-levels 0.001,0.05,0.1,0.2,0.3,0.4,0.5,1 \
-    --base TOY_BASE_GWAS.assoc \
+    --base /home/wangzhe/projects/20220629_GWA_tutorial/PRS/file1.txt \
     --binary-target T \
     --clump-kb 250 \
     --clump-p 1.000000 \
@@ -18,48 +18,32 @@ GigaScience 8, no. 7 (July 1, 2019)
     --lower 5e-08 \
     --or  \
     --out PRSice \
-    --seed 3850825706 \
+    --seed 3674421735 \
     --stat OR \
-    --target TOY_TARGET_DATA \
+    --target /home/wangzhe/projects/gwas/SNP_data/selected_two_cohorts \
     --thread 1 \
     --upper 0.5
 
-Initializing Genotype file: TOY_TARGET_DATA (bed) 
+Initializing Genotype file: 
+/home/wangzhe/projects/gwas/SNP_data/selected_two_cohorts 
+(bed) 
 
-Start processing TOY_BASE_GWAS 
+Start processing file1 
 ================================================== 
 
-Base file: TOY_BASE_GWAS.assoc 
-91062 variant(s) observed in base file, with: 
-88836 total variant(s) included from base file 
+Base file: 
+/home/wangzhe/projects/20220629_GWA_tutorial/PRS/file1.txt 
+2 variant(s) observed in base file, with: 
+2 total variant(s) included from base file 
 
 Loading Genotype info from target 
 ================================================== 
 
-2000 people (1024 male(s), 976 female(s)) observed 
-2000 founder(s) included 
+4945 people (0 male(s), 0 female(s)) observed 
+4945 founder(s) included 
 
-2226 variant(s) not found in previous data 
-88836 variant(s) included 
+13480083 variant(s) not found in previous data 
+0 variant(s) included 
 
-There are a total of 1 phenotype to process 
-
-Start performing clumping 
-
-128414 MB RAM detected; reserving 1 MB for clumping 
-
-Allocated 1 MB successfully 
-
-Number of variant(s) after clumping : 88836 
-
-Phenotype is a binary phenotype 
-1000 control(s) 
-1000 case(s) 
-
-There are 1 region(s) with p-value less than 1e-5. Please 
-note that these results are inflated due to the overfitting 
-inherent in finding the best-fit PRS (but it's still best 
-to find the best-fit PRS!). 
-You can use the --perm option (see manual) to calculate an 
-empirical P-value. 
+Error: No vairant remained! 
 

@@ -1,0 +1,11 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+# 排除所有plink文件:
+*.bed
+*.bim
+*.fam
+*.assoc
+*.zip
+PRSice_linux

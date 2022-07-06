@@ -5,3 +5,6 @@ Rscript PRSice.R --dir . \
 --thread 1  \
 --stat OR \
 --binary-target T
+
+
+# TOY_BASE_GWAS.assoc leadSNP?

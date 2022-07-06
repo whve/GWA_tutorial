@@ -9,6 +9,70 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## 加权评分
 
-PRS评分，可以构建一个加权的评分，即用beta系数做权重。另外，再构建一个非加权的评分，这时只考虑beta的正负号即可。
+1）
+基于早产逻辑回归中  lead SNP的 beta系数（logOR 即beta系数）,在我给你的webirth数据中，构建一个 多基因风险评分PRS，
+2）再拿这个PRS 跟早产结局，做一个 逻辑回归。
 
-webirth数据中的 SNP信息 即赋值 0,1,2， 加权的时候再乘以beta系数即可。
+3）PRS评分，可以构建一个加权的评分，即用beta系数做权重。另外，再构建一个非加权的评分，这时只考虑beta的正负号即可。
+
+4）webirth数据中的 SNP信息 即赋值 0,1,2， 加权的时候再乘以beta系数即可。
+
+## 是这样的步骤吗
+是用4342样本的早产gwas的lead SNP，将OR那一列换成logOR or （+，-），生成file1 and file 1_1
+
+head TOY_BASE_GWAS.assoc
+SNP CHR BP A1 A2 P OR
+SNP_22857 4 103593179 1 2 0.2852 13.29
+SNP_13879 2 237416793 1 2 0.8784 21.624
+SNP_20771 4 16957461 1 2 0.1994 91.265
+
+gzip -cd res_pca10_age_4000.assoc2.logistic.gz | head
+ CHR           SNP         BP   A1       TEST    NMISS         OR         STAT            P ｜  logOR   beta的正负号
+   1      1:713158     713158    A        ADD     4342     0.5901       -1.445       0.1485 ｜  
+   1      1:713158     713158    A       COV1     4342      23.16       0.5027       0.6152 ｜
+   1      1:713158     713158    A       COV2     4342      1.038      0.00725       0.9942 ｜
+
+file1： 
+
+在plink中提取子集，file2:527的plink文件# 不用子集，全部算出来。
+
+运行脚本计算PRS。
+Rscript PRSice.R --dir . \
+--prsice ./PRSice_linux \
+--base /home/wangzhe/projects/20220629_GWA_tutorial/PRS/file1.txt  \
+--target /home/wangzhe/projects/gwas/SNP_data/selected_two_cohorts \
+--thread 1  \
+--stat OR \
+--binary-target T
+
+Error: All sample has invalid phenotypes! 
+
+Error: No sample left 
+
+
+
+然后和是否早产做逻辑回归
+FID IID In_Regression PRS         ｜ pertrem
+CAS_1 CAS_1 Yes -0.00599501328    ｜YES
+CAS_2 CAS_2 Yes -0.00631017938    ｜NO
+CAS_3 CAS_3 Yes -0.00227495325    ｜YSE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://gwaslab.com/recommended-reading/
+
+https://gwaslab.com/2021/08/04/prs/
+多基因风险分数 PRS( Polygenic risk score)系列之一：概念入门
+
